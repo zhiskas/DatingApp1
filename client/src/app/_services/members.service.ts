@@ -11,7 +11,6 @@ import { Photo } from '../_models/photo';
 export class MembersService {
 private http = inject(HttpClient);
 baseUrl = environment.apiUrl;
-
 members = signal<Member[]>([]);
 
 getMembers(){
@@ -46,6 +45,19 @@ setMainPhoto(photo: Photo){
           return m;
         })
       )
+    })
+  )
+}
+
+deletePhoto(photo: Photo) {
+  return this.http.delete(this.baseUrl + 'users/delete-photo/' + photo.id).pipe(
+    tap(() => {
+      this.members.update(members => members.map(m => {
+        if (m.photos.includes(photo)) {
+          m.photos = m.photos.filter( x => x.id !== photo.id)
+        }
+        return m
+      }))
     })
   )
 }

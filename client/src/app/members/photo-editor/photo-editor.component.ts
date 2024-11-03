@@ -14,7 +14,6 @@ import { MembersService } from '../../_services/members.service';
   templateUrl: './photo-editor.component.html',
   styleUrl: './photo-editor.component.css'
 })
-
 export class PhotoEditorComponent implements OnInit {
   private accountService = inject(AccountService);
   private memberService = inject(MembersService);
@@ -33,6 +32,17 @@ export class PhotoEditorComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
+  deletePhoto(photo: Photo) {
+    this.memberService.deletePhoto(photo).subscribe({
+      next: _ => {
+        const updatedMember = {...this.member()};
+        updatedMember.photos = updatedMember.photos.filter(x => x.id !== photo.id);
+
+        this.memberChange.emit(updatedMember);
+      }
+    })
+  }
+
   setMainPhoto(photo: Photo){
     this.memberService.setMainPhoto(photo).subscribe({
       next: _ => {
@@ -47,6 +57,7 @@ export class PhotoEditorComponent implements OnInit {
           if (p.isMain) p.isMain = false;
           if(p.id === photo.id) p.isMain = true;
         });
+
         this.memberChange.emit(updatedMember);
       }
     })
@@ -70,6 +81,7 @@ export class PhotoEditorComponent implements OnInit {
       const photo = JSON.parse(response);
       const updatedMember = {...this.member()};
       updatedMember.photos.push(photo);
+
       this.memberChange.emit(updatedMember);
     }
   }
