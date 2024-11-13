@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 #nullable disable
 namespace API.Data.Migrations
 {
@@ -87,6 +86,7 @@ namespace API.Data.Migrations
                     PublicId = table.Column<string>(type: "TEXT", nullable: true),
                     AppUserId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
+                
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Photos", x => x.Id);
