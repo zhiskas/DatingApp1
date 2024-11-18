@@ -2,7 +2,6 @@ using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace API.Controllers;
 
 public class BuggyController(DataContext context): BaseApiController
@@ -27,7 +26,6 @@ public class BuggyController(DataContext context): BaseApiController
     public ActionResult<AppUser> GetServerError()
     {
         var thing = context.Users.Find(-1) ?? throw new Exception("A bad thing has happened");
-
         
         return thing;
     }

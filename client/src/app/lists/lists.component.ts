@@ -23,8 +23,7 @@ export class ListsComponent implements OnInit, OnDestroy {
   }
 
   getTitle() {
-    switch (this.predicate)
-    {
+    switch (this.predicate) {
       case 'liked': return 'Members you like';
       case 'likedBy': return 'Members who like you';
       default: return 'Mutual'
@@ -36,6 +35,7 @@ export class ListsComponent implements OnInit, OnDestroy {
   }
 
   pageChanged(event: any) {
+    //if the event page is different to the page number then move foreward or backwards
     if (this.pageNumber !== event.page) {
       this.pageNumber = event.page;
       this.loadLikes();
