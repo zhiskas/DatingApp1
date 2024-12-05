@@ -60,11 +60,7 @@ public class LikesRepository(DataContext context, IMapper mapper) : ILikesReposi
                     .ProjectTo<MemberDto>(mapper.ConfigurationProvider);
                 break;
         }
+        
         return await PagedList<MemberDto>.CreateAsync(query, likesParams.PageNumber, likesParams.PageSize);
-    }
-
-    public async Task<bool> SaveChanges()
-    {
-        return await context.SaveChangesAsync() > 0;
     }
 }

@@ -24,6 +24,7 @@ public static class ApplicationsServiceExtensions
         services.AddScoped<IUserRepository, UserReposititory>();
         services.AddScoped<ILikesRepository, LikesRepository>();
         services.AddScoped<IMessageRepository, MessageRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IPhotoService, PhotoService>();
         services.AddScoped<LogUserActivity>();
 
@@ -31,8 +32,7 @@ public static class ApplicationsServiceExtensions
 
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
 
-        services.AddSignalR();
-        
+        services.AddSignalR();        
         services.AddSingleton<PresenceTracker>();
 
         return services;

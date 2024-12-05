@@ -20,7 +20,6 @@ public class UserReposititory(DataContext context, IMapper mapper) : IUserReposi
     public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
     {
         var query = context.Users.AsQueryable();
-
         query = query.Where(x => x.UserName != userParams.CurrentUsername);
         if(userParams.Gender != null)
         {
@@ -58,11 +57,6 @@ public class UserReposititory(DataContext context, IMapper mapper) : IUserReposi
         return await context.Users
         .Include(x => x.Photos)
         .ToListAsync();
-    }
-
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
     }
 
     public void Update(AppUser user)
