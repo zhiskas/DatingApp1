@@ -1,10 +1,7 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 namespace API.Data;
 
 public class Seed
@@ -16,7 +13,6 @@ public class Seed
         var userData = await File.ReadAllTextAsync("Data/UserSeedData.json");
 
         var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
-
         var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);
 
         if (users == null) return;
@@ -35,8 +31,8 @@ public class Seed
 
         foreach (var user in users)
         {            
-            user.UserName = user.UserName!.ToLower();
-            
+            user.Photos.First().IsApproved = true;
+            user.UserName = user.UserName!.ToLower();            
             await userManager.CreateAsync(user, "Pa$$w0rd");
             await userManager.AddToRoleAsync(user, "Member");
         }
