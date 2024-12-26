@@ -15,7 +15,7 @@ public static class ApplicationsServiceExtensions
         
         services.AddDbContext<DataContext>(opt =>
         {
-            opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         });
 
         services.AddCors();
@@ -35,7 +35,6 @@ public static class ApplicationsServiceExtensions
 
         services.AddSignalR();        
         services.AddSingleton<PresenceTracker>();
-
         return services;
     }
 }
