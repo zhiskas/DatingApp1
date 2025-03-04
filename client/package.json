@@ -34,7 +34,7 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.12",
+    "@angular-devkit/build-angular": "^18.2.0",
     "@angular/cli": "^18.2.12",
     "@angular/compiler-cli": "^18.2.13",
     "@types/jasmine": "~5.1.0",
@@ -50,6 +50,12 @@
     "ng2-file-upload": {
       "@angular/common": "$@angular/common",
       "@angular/core": "$@angular/core"
+    },
+    "ngx-bootstrap": {
+      "@angular/common": "$@angular/common",
+      "@angular/core": "$@angular/core",
+      "@angular/animations": "$@angular/animations",
+      "@angular/forms": "$@angular/forms"
     }
   }
 }
